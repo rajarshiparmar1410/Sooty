@@ -1,24 +1,8 @@
 import random
 
-def titleOpen():
-    var = random.randint(1,2)
-    if var == 1:
-        print('''                                           
- @@@@@@    @@@@@@    @@@@@@   @@@@@@@  @@@ @@@  
-@@@@@@@   @@@@@@@@  @@@@@@@@  @@@@@@@  @@@ @@@  
-!@@       @@!  @@@  @@!  @@@    @@!    @@! !@@  
-!@!       !@!  @!@  !@!  @!@    !@!    !@! @!!  
-!!@@!!    @!@  !@!  @!@  !@!    @!!     !@!@!   
- !!@!!!   !@!  !!!  !@!  !!!    !!!      @!!!   
-     !:!  !!:  !!!  !!:  !!!    !!:      !!:    
-    !:!   :!:  !:!  :!:  !:!    :!:      :!:    
-:::: ::   ::::: ::  ::::: ::     ::       ::    
-:: : :     : :  :    : :  :      :        :    
- 
-                           by @TheresAFewConors''')
-    if var == 2:
-        print('''
 
+def titleOpen():
+    print('''
    _____             _         
   / ____|           | |        
  | (___   ___   ___ | |_ _   _ 
@@ -27,8 +11,6 @@ def titleOpen():
  |_____/ \___/ \___/ \__|\__, |
                           __/ |
                          |___/ 
-                         
-                            by @TheresAFewConors
 ''')
     print("\n The SOC Analyst's all-in-one tool to "
           "automate and speed up workflow ")
