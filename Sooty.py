@@ -1,9 +1,8 @@
 """
     Title:      Sooty
     Desc:       The SOC Analysts all-in-one CLI tool to automate and speed up workflow.
-    Author:     Connor Jackson
-    Version:    1.3.2
-    GitHub URL: https://github.com/TheresAFewConors/Sooty
+    Author:     Rajarshi Parmar
+    Version:    1.0.0
 """
 
 import base64
@@ -25,7 +24,6 @@ import tkinter.filedialog
 from Modules import iplists
 from Modules import phishtank
 from Modules import TitleOpen
-from datetime import datetime, date
 
 try:
     import win32com.client
@@ -61,8 +59,6 @@ def switchMenu(choice):
         phishingMenu()
     if choice == '7':
         urlscanio()
-    if choice == '9':
-        extrasMenu()
     if choice == '0':
         exit()
     else:
@@ -70,18 +66,12 @@ def switchMenu(choice):
 
 def decoderSwitch(choice):
     if choice == '1':
-        proofPointDecoder()
-    if choice == '2':
         urlDecoder()
-    if choice == '3':
-        safelinksDecoder()
-    if choice == '4':
+    if choice == '2':
         unshortenUrl()
-    if choice == '5':
+    if choice == '3':
         b64Decoder()
-    if choice == '6':
-        cisco7Decoder()
-    if choice == '7':
+    if choice == '4':
         unfurlUrl()
     if choice == '0':
         mainMenu()
@@ -111,14 +101,10 @@ def hashSwitch(choice):
 
 def phishingSwitch(choice):
     if choice == '1':
-        analyzePhish()
-    if choice == '2':
         analyzeEmailInput()
-    if choice == '3':
-        emailTemplateGen()
-    if choice == '4':
+    if choice == '2':
         phishtankModule()
-    if choice == '9':
+    if choice == '3':
         haveIBeenPwned()
     else:
         mainMenu()
@@ -169,13 +155,12 @@ def mainMenu():
     print("\n --------------------------------- ")
     print(" What would you like to do? ")
     print("\n OPTION 1: Sanitise URL For emails ")
-    print(" OPTION 2: Decoders (PP, URL, SafeLinks) ")
+    print(" OPTION 2: Decoders (URL, Base 64, Unshortner) ")
     print(" OPTION 3: Reputation Checker")
     print(" OPTION 4: DNS Tools")
     print(" OPTION 5: Hashing Function")
     print(" OPTION 6: Phishing Analysis")
     print(" OPTION 7: URL scan")
-    print(" OPTION 9: Extras")
     print(" OPTION 0: Exit Tool")
     switchMenu(input())
 
@@ -195,13 +180,10 @@ def decoderMenu():
     print("           D E C O D E R S        ")
     print(" --------------------------------- ")
     print(" What would you like to do? ")
-    print(" OPTION 1: ProofPoint Decoder")
-    print(" OPTION 2: URL Decoder")
-    print(" OPTION 3: Office SafeLinks Decoder")
-    print(" OPTION 4: URL unShortener")
-    print(" OPTION 5: Base64 Decoder")
-    print(" OPTION 6: Cisco Password 7 Decoder")
-    print(" OPTION 7: Unfurl URL")
+    print(" OPTION 1: URL Decoder")
+    print(" OPTION 2: URL unShortener")
+    print(" OPTION 3: Base64 Decoder")    
+    print(" OPTION 4: Unfurl URL")
     print(" OPTION 0: Exit to Main Menu")
     decoderSwitch(input())
 
@@ -427,16 +409,14 @@ def repChecker():
             response = requests.get(BAD_IPS_URL)
             if response.status_code == 200:
                 result = response.json()
+
+                sc = result['Score']['ssh']
                 print("  " + str(result['suc']))
-                print("  Total Reports : " + str(result['ReporterCount']['sum']))
-                print("\n  IP has been reported in the following Categories:")
-                for each in result['LastReport']:
-                    timeReport = datetime.fromtimestamp(result['LastReport'].get(each))
-                    print('   - ' + each + ': ' + str(timeReport))
+                print("  Score: " + str(sc))
             else:
                 print('  Error reaching BadIPs')
         except:
-            print('  IP not found') #Defaults to IP not found - not actually accurate
+            print('  IP not found')
 
         print("\n ABUSEIPDB Report:")
         try:
@@ -632,11 +612,9 @@ def phishingMenu():
     print("          P H I S H I N G          ")
     print(" --------------------------------- ")
     print(" What would you like to do? ")
-    print(" OPTION 1: Analyze an Email ")
-    print(" OPTION 2: Analyze an Email Address for Known Activity")
-    print(" OPTION 3: Generate an Email Template based on Analysis")
-    print(" OPTION 4: Analyze an URL with Phishtank")
-    print(" OPTION 9: HaveIBeenPwned")
+    print(" OPTION 1: Analyze an Email Address for Known Activity")
+    print(" OPTION 2: Analyze an URL with Phishtank")
+    print(" OPTION 3: HaveIBeenPwned")
     print(" OPTION 0: Exit to Main Menu")
     phishingSwitch(input())
 
